@@ -1,0 +1,24 @@
+name: Import licensed Bame site template
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.template-import/bame-site-import.zip'
+permissions:
+  contents: write
+jobs:
+  import-template:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract template into repository root
+        run: unzip -o .template-import/bame-site-import.zip -d .
+      - name: Commit imported template
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Apply complete licensed Bame esports template" || exit 0
+          git push
