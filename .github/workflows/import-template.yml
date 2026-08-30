@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.template-import/bame-site-import.zip'
+      - '.template-import/trigger.txt'
 permissions:
   contents: write
 jobs:
